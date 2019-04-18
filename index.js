@@ -60,6 +60,17 @@ app.get("/addPost", (req, res) => {
   });
 });
 
+//Select Query
+
+app.get("/getPosts", (req, res) => {
+  let query = "SELECT * FROM post";
+  db.query(query, (err, results) => {
+    if (err) throw err;
+    console.log(results);
+    res.send(results);
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server Started on 3000");
 });
