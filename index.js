@@ -81,6 +81,18 @@ app.get("/getPost/:id", (req, res) => {
   });
 });
 
+//update post by id
+app.get("/updatePost/:id", (req, res) => {
+  let title = "update new title";
+  let query = `UPDATE post SET title='${title}' WHERE id=${req.params.id}`;
+
+  db.query(query, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server Started on 3000");
 });
