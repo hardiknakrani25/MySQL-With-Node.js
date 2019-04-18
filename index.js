@@ -93,6 +93,16 @@ app.get("/updatePost/:id", (req, res) => {
   });
 });
 
+//Delete post by id
+app.get("/deletePost/:id", (req, res) => {
+  let query = `DELETE FROM post WHERE id=${req.params.id}`;
+  db.query(query, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server Started on 3000");
 });
