@@ -43,6 +43,23 @@ app.get("/createPostTable", (req, res) => {
   });
 });
 
+//query to add data into the table
+
+app.get("/addPost", (req, res) => {
+  let post = {
+    title: "Post 1",
+    body: "Description of the post 1"
+  };
+
+  let query = "INSERT INTO post SET ?";
+
+  db.query(query, post, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send("Post is Created into the Table");
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server Started on 3000");
 });
