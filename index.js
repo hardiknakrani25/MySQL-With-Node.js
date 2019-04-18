@@ -6,8 +6,8 @@ const app = express();
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: ""
-  //   database: "nodesql"
+  password: "",
+  database: "nodesql"
 });
 
 db.connect(err => {
@@ -27,6 +27,19 @@ app.get("/createDB", (req, res) => {
       console.log(result);
       res.send("Database Created");
     }
+  });
+});
+
+app.get("/createPostTable", (req, res) => {
+  let query =
+    "CREATE TABLE post(id int AUTO_INCREMENT,title VARCHAR(250),body VARCHAR(250),PRIMARY KEY(id))";
+
+  //query  to  create table
+
+  db.query(query, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send("Table Created");
   });
 });
 
